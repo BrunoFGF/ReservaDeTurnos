@@ -10,4 +10,7 @@ public interface IServicePaciente {
     boolean eliminar(Long id);
     Paciente actualizar (Paciente paciente);
     List<Paciente> listarTodos();
+    Paciente buscarPorNombre(String nombre);
+    Paciente buscarPorApellido(String apellido);
+    Paciente buscarPorDni(String dni);
 }

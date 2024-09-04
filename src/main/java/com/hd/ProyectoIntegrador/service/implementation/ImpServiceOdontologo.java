@@ -24,14 +24,8 @@ public class ImpServiceOdontologo implements IServiceOdontologo {
 
     @Override
     public Odontologo buscarPorId(Long id){
-        //va a buscar al odontologo y lo va a guardar en odontologoBuscado
-        //o va a guardar un null en el odontologoBuscado
         Optional<Odontologo> odontologoBuscado = iOdontologoRepository.findById(id);
-        if (odontologoBuscado.isPresent()) {
-            return odontologoBuscado.get();
-        } else {
-            return null;
-        }
+        return odontologoBuscado.orElse(null);
     }
 
     @Override

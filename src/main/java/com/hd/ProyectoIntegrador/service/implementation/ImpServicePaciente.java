@@ -53,4 +53,19 @@ public class ImpServicePaciente implements IServicePaciente {
         }
         return pacientes;
     }
+
+    @Override
+    public Paciente buscarPorNombre(String nombre) {
+        return iPacienteRepository.findByNombre(nombre);
+    }
+
+    @Override
+    public Paciente buscarPorApellido(String apellido) {
+        return iPacienteRepository.findByApellido(apellido);
+    }
+
+    @Override
+    public Paciente buscarPorDni(String dni) {
+        return iPacienteRepository.findByDni(dni);
+    }
 }

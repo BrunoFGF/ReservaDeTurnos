@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador.controller;
 
+import com.hd.ProyectoIntegrador.model.Odontologo;
 import com.hd.ProyectoIntegrador.model.Paciente;
 import com.hd.ProyectoIntegrador.service.IServicePaciente;
 import com.hd.ProyectoIntegrador.service.implementation.ImpServicePaciente;
@@ -53,5 +54,20 @@ public class PacienteController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @GetMapping("nombre/{nombre}")
+    public ResponseEntity<Paciente> buscarPorNombre(@PathVariable String nombre) {
+        return ResponseEntity.ok(servicePaciente.buscarPorNombre(nombre));
+    }
+
+    @GetMapping("apellido/{apellido}")
+    public ResponseEntity<Paciente> buscarPorApellido(@PathVariable String apellido) {
+        return ResponseEntity.ok(servicePaciente.buscarPorApellido(apellido));
+    }
+
+    @GetMapping("dni/{dni}")
+    public ResponseEntity<Paciente> buscarPorDni(@PathVariable String dni) {
+        return ResponseEntity.ok(servicePaciente.buscarPorDni(dni));
     }
 }

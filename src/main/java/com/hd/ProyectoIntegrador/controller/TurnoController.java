@@ -1,9 +1,9 @@
 package com.hd.ProyectoIntegrador.controller;
 
-import com.hd.ProyectoIntegrador.model.Paciente;
 import com.hd.ProyectoIntegrador.model.Turno;
 import com.hd.ProyectoIntegrador.service.IServiceTurno;
-import com.hd.ProyectoIntegrador.service.implementation.ImpServiceTurno;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/turnos")
 public class TurnoController {
+    @Autowired
     private IServiceTurno iServiceTurno;
-
-    public TurnoController() {
-        this.iServiceTurno = new ImpServiceTurno();
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Turno> buscarPorId(@PathVariable Long id) {
@@ -31,5 +28,36 @@ public class TurnoController {
     @GetMapping
     public ResponseEntity<List<Turno>> listarTodos() {
         return ResponseEntity.ok(iServiceTurno.listarTodos());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable  Long id){
+        ResponseEntity<Void> response = null;
+        if (iServiceTurno.eliminar(id)){
+            response = ResponseEntity.status(HttpStatus.OK).build();
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return response;
+    }
+
+    @PutMapping
+    public ResponseEntity<Turno> actualizar(@RequestBody Turno turno) {
+        Turno turnoActualizado = iServiceTurno.actualizar(turno);
+        if (turnoActualizado != null) {
+            return ResponseEntity.ok(turnoActualizado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("nombrePaciente/{nombrePaciente}")
+    public ResponseEntity<List<Turno>> buscarPorNombreDelPaciente(@PathVariable String nombrePaciente) {
+        return ResponseEntity.ok(iServiceTurno.buscarPorNombreDelPaciente(nombrePaciente));
+    }
+
+    @GetMapping("nombreOdontologo/{nombreOdontologo}")
+    public ResponseEntity<List<Turno>> buscarPorNombreDelOdontologo(@PathVariable String nombreOdontologo) {
+        return ResponseEntity.ok(iServiceTurno.buscarPorNombreDelOdontologo(nombreOdontologo));
     }
 }
