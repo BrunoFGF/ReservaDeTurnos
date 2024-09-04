@@ -4,6 +4,7 @@ import com.hd.ProyectoIntegrador.model.Odontologo;
 import com.hd.ProyectoIntegrador.model.Paciente;
 import com.hd.ProyectoIntegrador.service.IServicePaciente;
 import com.hd.ProyectoIntegrador.service.implementation.ImpServicePaciente;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,14 +12,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
+    @Autowired
     private IServicePaciente servicePaciente;
 
-    public PacienteController() {
+
+    /*public PacienteController() {
         this.servicePaciente = new ImpServicePaciente();
-    }
+    }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) {

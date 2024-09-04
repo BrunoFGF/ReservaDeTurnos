@@ -9,7 +9,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const limpiarFormularioBtn = document.getElementById('limpiarFormulario');
     const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
     const confirmarEliminarBtn = document.getElementById('confirmarEliminarBtn');
+    const inicioBtn = document.getElementById('inicioBtn');
+    const listarTodosBtn = document.getElementById('listarTodosBtn');
+    const tableBody = document.getElementById('pacientesTableBody');
     let pacienteIdEliminar = null;
+
+
+
+      // Redirigir a index.html al hacer clic en el botón
+            inicioBtn.addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+
+    // Función para agregar o actualizar un paciente
+        pacienteForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const pacienteId = document.getElementById('pacienteId').value;
+            const metodo = pacienteId ? 'PUT' : 'POST';
+            const url = '/pacientes';
+
+            const paciente = {
+                id: pacienteId ? parseInt(pacienteId, 10)  : null,
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                dni: document.getElementById('dni').value,
+                fechaAlta: document.getElementById('fechaAlta').value,
+                domicilio: {
+                    calle: document.getElementById('calle').value,
+                    numero: parseInt(document.getElementById('numero').value),
+                    localidad: document.getElementById('localidad').value,
+                    provincia: document.getElementById('provincia').value
+                }
+            };
+             console.log('Paciente a guardar:', paciente);
+
+            fetch(url, {
+                method: metodo,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(paciente)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al guardar el paciente.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+                alert('Paciente guardado/actualizado con éxito');
+                pacienteForm.reset();
+                document.getElementById('pacienteId').value = '';
+                formTitle.textContent = 'Agregar Paciente';
+                guardarPacienteBtn.textContent = 'Guardar';
+                listarPacientes();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        });
 
     // Función para listar todos los pacientes
     function listarPacientes() {
@@ -34,53 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error al listar pacientes:', error));
     }
 
-    // Función para agregar o actualizar un paciente
-    pacienteForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const pacienteId = document.getElementById('pacienteId').value;
-        const metodo = pacienteId ? 'PUT' : 'POST';
-        const url = '/pacientes';
 
-        const paciente = {
-            id: pacienteId ? parseLong(pacienteId) : null,
-            nombre: document.getElementById('nombre').value,
-            apellido: document.getElementById('apellido').value,
-            dni: document.getElementById('dni').value,
-            fechaAlta: document.getElementById('fechaAlta').value,
-            domicilio: {
-                calle: document.getElementById('calle').value,
-                numero: parseInt(document.getElementById('numero').value),
-                localidad: document.getElementById('localidad').value,
-                provincia: document.getElementById('provincia').value
-            }
-        };
-
-        fetch(url, {
-            method: metodo,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(paciente)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al guardar el paciente.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert('Paciente guardado/actualizado con éxito');
-            pacienteForm.reset();
-            document.getElementById('pacienteId').value = '';
-            formTitle.textContent = 'Agregar Paciente';
-            guardarPacienteBtn.textContent = 'Guardar';
-            listarPacientes();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert(error.message);
-        });
-    });
 
     // Función para limpiar el formulario
     limpiarFormularioBtn.addEventListener('click', () => {
@@ -131,7 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 pacientesTableBody.innerHTML = '';
                 alert(error.message);
-            });
+            })
+            .finally(() => {
+                                // Limpia el campo de búsqueda siempre, independientemente del resultado
+                                document.getElementById('busqueda').value = '';
+                            });
     });
 
     // Función para editar un paciente
@@ -163,6 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
+
+     listarTodosBtn.addEventListener('click', listarPacientes);
+
+
+
     // Función para preparar la eliminación de un paciente
     window.prepararEliminarPaciente = function(id) {
         pacienteIdEliminar = id;
@@ -193,6 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+
+
+
 
     // Inicializar la lista de pacientes al cargar la página
     listarPacientes();

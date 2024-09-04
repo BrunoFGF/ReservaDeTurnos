@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,6 @@ public class Domicilio {
     private String localidad;
     private String provincia;
     @OneToOne(mappedBy = "domicilio")
+    @JsonBackReference
     private Paciente paciente;
 }

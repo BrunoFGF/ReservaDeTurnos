@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const buscarBtn = document.getElementById('buscarBtn');
     const listarTodosBtn = document.getElementById('listarTodosBtn');
     const tableBody = document.getElementById('odontologosTableBody');
+    const inicioBtn = document.getElementById('inicioBtn');
+
+    // Redirigir a index.html al hacer clic en el botón
+        inicioBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
 
     // Mostrar el formulario para agregar un nuevo odontólogo
     mostrarFormularioBtn.addEventListener('click', function() {
@@ -88,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 cell.colSpan = 5;
                 cell.textContent = `No se encontró el odontólogo con el ${criterio} proporcionado.`;
                 cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
+
             }
         })
         .catch(error => {
@@ -97,7 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.colSpan = 5;
             cell.textContent = error.message; // Mostrar el mensaje de error
             cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
-        });
+
+        })
+        .finally(() => {
+                    // Limpia el campo de búsqueda siempre, independientemente del resultado
+                    document.getElementById('busqueda').value = '';
+                });
     });
 
 

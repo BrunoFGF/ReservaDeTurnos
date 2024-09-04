@@ -22,11 +22,15 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="odontologoId" class="form-label">ID Odontólogo</label>
-                        <input type="number" class="form-control" id="odontologoId" required>
+                        <select class="form-control" id="odontologoId" name="nombreodontologo" required>
+                            <option value="">Seleccione un paciente</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="pacienteId" class="form-label">ID Paciente</label>
-                        <input type="number" class="form-control" id="pacienteId" required>
+                        <select class="form-control" id="pacienteId" name="nombrePaciente" required>
+                            <option value="">Seleccione un odontólogo</option>
+                        </select>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -49,8 +53,8 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Odontólogo ID</th>
-                    <th>Paciente ID</th>
+                    <th>Odontólogo</th>
+                    <th>Paciente</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
@@ -85,6 +89,7 @@
 <!-- Bootstrap JS y dependencias -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- JavaScript Personalizado -->
-<script src="turnos.js"></script>
+<script src="js/turnos.js"></script>
+<script type="text/javascript" src="/js/get_paciente_odontologo.js"></script>
 </body>
 </html>

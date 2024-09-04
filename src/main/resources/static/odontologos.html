@@ -38,11 +38,17 @@
         .btn-secondary {
             background-color: #868e96;
             border-color: #868e96;
+            margin-right:auto;
         }
         .menu-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+        }
+        .left-buttons {
+            display: flex;
+            gap: 10px;
         }
         .menu-bar button {
             border-radius: 20px;
@@ -62,8 +68,11 @@
 <body>
 <div class="container mt-5">
     <div class="menu-bar">
-        <button class="btn btn-secondary" id="listarTodosBtn">Listar Todos</button>
-        <button class="btn btn-info" id="mostrarFormularioBtn">Agregar Odontólogo</button>
+        <div class="left-buttons">
+            <button class="btn btn-secondary" id="inicioBtn">Inicio</button>
+            <button class="btn btn-secondary" id="listarTodosBtn">Listar Todos</button>
+        </div>
+            <button class="btn btn-info" id="mostrarFormularioBtn">Agregar Odontólogo</button>
     </div>
 
     <h1 class="mb-4">Gestión de Odontólogos</h1>
