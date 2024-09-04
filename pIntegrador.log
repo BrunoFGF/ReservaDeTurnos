@@ -1,0 +1,525 @@
+[2024-08-20 10:04:57] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:04:57] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:04:57] [ INFO ] [ImpDaoPaciente:120] Se está actualizando un paciente
+[2024-08-20 10:04:57] [ INFO ] [ImpDaoPaciente:57] Se están listando todos los pacientes
+[2024-08-20 10:05:48] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:05:48] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:05:48] [ INFO ] [ImpDaoPaciente:120] Se está actualizando un paciente
+[2024-08-20 10:05:48] [ INFO ] [ImpDaoPaciente:57] Se están listando todos los pacientes
+[2024-08-20 10:07:34] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:07:34] [ INFO ] [ImpDaoPaciente:18] Se está persistiendo un paciente
+[2024-08-20 10:07:34] [ INFO ] [ImpDaoPaciente:120] Se está actualizando un paciente
+[2024-08-20 10:07:34] [ INFO ] [ImpDaoPaciente:57] Se están listando todos los pacientes
+[2024-08-20 10:57:50] [ INFO ] [ImpDaoOdontoogo:93] Buscando odontólogo con ID: 3
+[2024-08-20 10:57:50] [ ERROR] [ImpDaoOdontoogo:120] Error al buscar el odontólogo con ID: 3
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS WHERE ID=? [42104-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.getTableOrViewNotFoundDbException(Parser.java:8051)
+	at org.h2.command.Parser.getTableOrViewNotFoundDbException(Parser.java:8035)
+	at org.h2.command.Parser.readTableOrView(Parser.java:8024)
+	at org.h2.command.Parser.readTablePrimary(Parser.java:1788)
+	at org.h2.command.Parser.readTableReference(Parser.java:2268)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2718)
+	at org.h2.command.Parser.parseSelect(Parser.java:2824)
+	at org.h2.command.Parser.parseQueryPrimary(Parser.java:2708)
+	at org.h2.command.Parser.parseQueryTerm(Parser.java:2564)
+	at org.h2.command.Parser.parseQueryExpressionBody(Parser.java:2543)
+	at org.h2.command.Parser.parseQueryExpressionBodyAndEndOfQuery(Parser.java:2536)
+	at org.h2.command.Parser.parseQueryExpression(Parser.java:2529)
+	at org.h2.command.Parser.parseQuery(Parser.java:2498)
+	at org.h2.command.Parser.parsePrepared(Parser.java:627)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at com.hd.ProyectoIntegrador.dao.implementation.ImpDaoOdontoogo.buscarPorId(ImpDaoOdontoogo.java:101)
+	at com.hd.ProyectoIntegrador.dao.implementation.ImpDaoOdontoogo.buscarPorId(ImpDaoOdontoogo.java:12)
+	at com.hd.ProyectoIntegrador.service.implementation.ImpServiceOdontologo.buscarPorId(ImpServiceOdontologo.java:25)
+	at com.hd.ProyectoIntegrador.controller.ThymeleafController.buscarOdontologoPorId(OdontologoController.java:26)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[2024-08-20 10:57:55] [ INFO ] [ImpDaoOdontoogo:93] Buscando odontólogo con ID: 1
+[2024-08-20 10:57:55] [ ERROR] [ImpDaoOdontoogo:120] Error al buscar el odontólogo con ID: 1
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS WHERE ID=? [42104-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.getTableOrViewNotFoundDbException(Parser.java:8051)
+	at org.h2.command.Parser.getTableOrViewNotFoundDbException(Parser.java:8035)
+	at org.h2.command.Parser.readTableOrView(Parser.java:8024)
+	at org.h2.command.Parser.readTablePrimary(Parser.java:1788)
+	at org.h2.command.Parser.readTableReference(Parser.java:2268)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2718)
+	at org.h2.command.Parser.parseSelect(Parser.java:2824)
+	at org.h2.command.Parser.parseQueryPrimary(Parser.java:2708)
+	at org.h2.command.Parser.parseQueryTerm(Parser.java:2564)
+	at org.h2.command.Parser.parseQueryExpressionBody(Parser.java:2543)
+	at org.h2.command.Parser.parseQueryExpressionBodyAndEndOfQuery(Parser.java:2536)
+	at org.h2.command.Parser.parseQueryExpression(Parser.java:2529)
+	at org.h2.command.Parser.parseQuery(Parser.java:2498)
+	at org.h2.command.Parser.parsePrepared(Parser.java:627)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at com.hd.ProyectoIntegrador.dao.implementation.ImpDaoOdontoogo.buscarPorId(ImpDaoOdontoogo.java:101)
+	at com.hd.ProyectoIntegrador.dao.implementation.ImpDaoOdontoogo.buscarPorId(ImpDaoOdontoogo.java:12)
+	at com.hd.ProyectoIntegrador.service.implementation.ImpServiceOdontologo.buscarPorId(ImpServiceOdontologo.java:25)
+	at com.hd.ProyectoIntegrador.controller.ThymeleafController.buscarOdontologoPorId(OdontologoController.java:26)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[2024-08-20 13:30:31] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 2
+[2024-08-20 13:30:31] [ INFO ] [ImpDaoPaciente:115] Paciente encontrado: Lucía 2
+[2024-08-20 13:30:47] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 1
+[2024-08-20 13:30:47] [ INFO ] [ImpDaoPaciente:115] Paciente encontrado: Martín 1
+[2024-08-20 13:30:50] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 10
+[2024-08-20 13:30:50] [ INFO ] [ImpDaoPaciente:115] Paciente encontrado: Florencia 10
+[2024-08-20 13:30:53] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 101
+[2024-08-20 13:30:53] [ WARN ] [ImpDaoPaciente:117] No se encontró un paciente con ID: 101
+[2024-08-20 13:30:56] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 11
+[2024-08-20 13:30:56] [ WARN ] [ImpDaoPaciente:117] No se encontró un paciente con ID: 11
+[2024-08-20 14:17:14] [ INFO ] [ImpDaoPaciente:95] Buscando paciente con ID: 10
+[2024-08-20 14:17:14] [ INFO ] [ImpDaoPaciente:115] Paciente encontrado: Florencia 10
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-20 14:17:25] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-20 14:20:56] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-20 15:11:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-20 17:39:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 18:55:20] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:05:07] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:06:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:08:36] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:14:24] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:14:39] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 19:14:39] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:14:40] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:15:02] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:15:12] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:15:13] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:17:15] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:17:28] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:19:35] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:19:45] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:19:46] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 19:20:05] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:39:49] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:39:58] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:39:59] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:43:17] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:43:31] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:43:32] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Bruno
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 20:43:38] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallego
+[2024-08-21 20:43:42] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Bruno Gallegos
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:45:57] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:34] Este es el odontólogo que se guardó: Sofíaaaaaa
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-21 20:46:10] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofíaaaaaa Gómez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-22 21:23:31] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:53] Listando todos los odontólogos
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Juan Pérez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: María García
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carlos Rodríguez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Ana López
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Luis González
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Laura Martínez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: José Sánchez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Carmen Ramírez
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Pedro Fernández
+[2024-08-22 21:23:44] [ INFO ] [ImpDaoOdontoogo:73] Odontólogo encontrado: Sofía Gómez

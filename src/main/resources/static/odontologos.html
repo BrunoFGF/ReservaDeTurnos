@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Odontólogos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4a4a4a;
+        }
+        .btn-primary {
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+        }
+        .btn-primary:hover {
+            background-color: #4cae4c;
+            border-color: #4cae4c;
+        }
+        .btn-info {
+            background-color: #5bc0de;
+            border-color: #5bc0de;
+        }
+        .btn-info:hover {
+            background-color: #31b0d5;
+            border-color: #31b0d5;
+        }
+        .btn-secondary {
+            background-color: #868e96;
+            border-color: #868e96;
+        }
+        .menu-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .menu-bar button {
+            border-radius: 20px;
+        }
+        .table thead th {
+            background-color: #f0f0f0;
+            color: #4a4a4a;
+        }
+        .table tbody tr {
+            transition: background-color 0.3s;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f8e9;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="menu-bar">
+        <button class="btn btn-secondary" id="listarTodosBtn">Listar Todos</button>
+        <button class="btn btn-info" id="mostrarFormularioBtn">Agregar Odontólogo</button>
+    </div>
+
+    <h1 class="mb-4">Gestión de Odontólogos</h1>
+
+    <!-- Formulario para agregar/actualizar odontólogo -->
+    <form id="odontologoForm" style="display: none;">
+        <input type="hidden" id="odontologoId">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" id="apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" class="form-control" id="matricula" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Guardar</button>
+        <button type="button" class="btn btn-secondary" id="cancelarBtn">Cancelar</button>
+    </form>
+
+    <hr>
+
+    <!-- Búsqueda por ID o matrícula -->
+    <div class="form-group">
+        <label for="criterioBusqueda">Buscar por:</label>
+        <select class="form-control" id="criterioBusqueda">
+            <option value="id">ID</option>
+            <option value="matricula">Matrícula</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="busqueda">Ingrese ID o Matrícula:</label>
+        <input type="text" class="form-control" id="busqueda">
+        <button class="btn btn-info mt-2" id="buscarBtn">Buscar</button>
+    </div>
+
+    <hr>
+
+    <!-- Lista de odontólogos -->
+    <h2>Lista de Odontólogos</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Matrícula</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="odontologosTableBody">
+        </tbody>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="js/odontologos.js"></script>
+</body>
+</html>
