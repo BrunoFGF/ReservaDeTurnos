@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface IDomicilioRepository extends JpaRepository<Domicilio, Long> {
-
     @Query("SELECT d FROM Domicilio d WHERE d.paciente.nombre = :nombre")
     Domicilio findByNombreDelPaciente(@Param("nombre") String nombre);
 
