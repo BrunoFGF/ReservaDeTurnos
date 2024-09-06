@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
             data.forEach(paciente => {
                 const option = document.createElement('option');
                 option.value = paciente.id;
-                option.textContent = `${paciente.nombre} ${paciente.apellido}`;
+                option.textContent = `${capitalizarPrimeraLetra(paciente.nombre)} ${capitalizarPrimeraLetra(paciente.apellido)}`;
                 pacienteSelect.appendChild(option);
             });
         })
@@ -31,9 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
             data.forEach(odontologo => {
                 const option = document.createElement('option');
                 option.value = odontologo.id;
-                option.textContent = `${odontologo.nombre} ${odontologo.apellido}`;
+                option.textContent = `${capitalizarPrimeraLetra(odontologo.nombre)} ${capitalizarPrimeraLetra(odontologo.apellido)}`;
                 odontologoSelect.appendChild(option);
             });
         })
         .catch(error => console.error('Error:', error));
 });
+ function capitalizarPrimeraLetra(texto) {
+            return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+        }

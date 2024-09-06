@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tableBody = document.getElementById('odontologosTableBody');
     const inicioBtn = document.getElementById('inicioBtn');
 
+
     // Redirigir a index.html al hacer clic en el botón
         inicioBtn.addEventListener('click', function() {
             window.location.href = 'index.html';
@@ -30,14 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarFormularioBtn.style.display = 'block';
     });
 
+
+
     // Guardar o actualizar odontólogo
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
         const odontologo = {
-            id: document.getElementById('odontologoId').value,
-            nombre: document.getElementById('nombre').value,
-            apellido: document.getElementById('apellido').value,
-            matricula: document.getElementById('matricula').value
+            id: document.getElementById('odontologoId').value.toLowerCase(),
+            nombre: document.getElementById('nombre').value.toLowerCase(),
+            apellido: document.getElementById('apellido').value.toLowerCase(),
+            matricula: document.getElementById('matricula').value.toLowerCase()
         };
 
         const url = '/odontologos';
@@ -107,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         })
         .finally(() => {
-                    // Limpia el campo de búsqueda siempre, independientemente del resultado
-                    document.getElementById('busqueda').value = '';
+            // Limpia el campo de búsqueda siempre, independientemente del resultado
+            document.getElementById('busqueda').value = '';
                 });
     });
 
@@ -133,9 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const row = tableBody.insertRow();
         row.innerHTML = `
             <td>${odontologo.id}</td>
-            <td>${odontologo.nombre}</td>
-            <td>${odontologo.apellido}</td>
-            <td>${odontologo.matricula}</td>
+            <td>${capitalizarPrimeraLetra(odontologo.nombre)}</td>
+            <td>${capitalizarPrimeraLetra(odontologo.apellido)}</td>
+            <td>${capitalizarPrimeraLetra(odontologo.matricula)}</td>
             <td>
                 <button class="btn btn-sm btn-warning editar-btn" data-id="${odontologo.id}">Editar</button>
                 <button class="btn btn-sm btn-danger eliminar-btn" data-id="${odontologo.id}">Eliminar</button>
@@ -151,8 +155,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 document.getElementById('odontologoId').value = data.id;
-                document.getElementById('nombre').value = data.nombre;
-                document.getElementById('apellido').value = data.apellido;
+                document.getElementById('nombre').value = capitalizarPrimeraLetra(data.nombre);
+                document.getElementById('apellido').value = capitalizarPrimeraLetra(data.apellido);
                 document.getElementById('matricula').value = data.matricula;
                 submitBtn.textContent = 'Actualizar';
                 form.style.display = 'block';
@@ -183,4 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cargar la lista de odontólogos al iniciar
     listarTodos();
+
+    function capitalizarPrimeraLetra(texto) {
+        return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+    }
 });

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const turnoForm = document.getElementById('turnoForm');
-    //const turnosTableBody = document.querySelector('#turnosTable tbody');
     const formTitle = document.getElementById('formTitle');
     const form = document.getElementById('turnoForm');
     const formCard = document.getElementById('formContainer');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const turnosTableBody = document.getElementById('turnosTableBody');
     const criterioBusqueda = document.getElementById('criterioBusqueda');
     const busquedaInput = document.getElementById('busqueda');
-    //const cancelarBtn = document.getElementById('cancelarBtn');
     const mostrarFormularioBtn = document.getElementById('mostrarFormularioBtn');
 
     let turnoIdEliminar = null;
@@ -35,9 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
          });
 
 
-         // Cancelar y ocultar el formulario
+     // Cancelar y ocultar el formulario
          cancelarBtn.addEventListener('click', function() {
-             //formCard.reset();
              formCard.style.display = 'none';
              mostrarFormularioBtn.style.display = 'block';
          });
@@ -47,19 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/turnos')
             .then(response => response.json())
             .then(data => {
-             console.log("--->"+data);
+
                 turnosTableBody.innerHTML = '';
                 data.forEach(turno => {
                     const fechaHora = new Date(turno.fecha);
                      // Obtener la fecha local formateada
                      const fechaFormateada = fechaHora.toLocaleDateString('es-ES'); // Cambia 'es-ES' por tu configuración regional si es necesario
-                    // Obtener la hora local formateada
+                     // Obtener la hora local formateada
                      const horaFormateada = fechaHora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
                     const row = turnosTableBody.insertRow();
                     row.insertCell(0).innerText = turno.id;
-                    row.insertCell(1).innerText = (turno.odontologo?.nombre || '') + " " + (turno.odontologo?.apellido || '');
-                    row.insertCell(2).innerText = (turno.paciente?.nombre || '') + " " + (turno.paciente?.apellido || '');
+                    row.insertCell(1).innerText = (capitalizarPrimeraLetra(turno.odontologo?.nombre) || '') + " " + (capitalizarPrimeraLetra(turno.odontologo?.apellido) || '');
+                    row.insertCell(2).innerText = (capitalizarPrimeraLetra(turno.paciente?.nombre) || '') + " " + (capitalizarPrimeraLetra(turno.paciente?.apellido) || '');
                     row.insertCell(3).innerText = fechaFormateada+" "+horaFormateada;
                     const accionesCell = row.insertCell(4);
                     accionesCell.innerHTML = `
@@ -173,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para buscar turnos
         buscarTurnoForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            const busqueda = busquedaInput?.value.trim().substring(0, 1).toUpperCase()+busquedaInput?.value.trim().substring(1).toLowerCase();
+            const busqueda = busquedaInput.value.toLowerCase();
             const criterio = criterioBusqueda.value;
             let url = '';
 
@@ -182,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (criterio === 'nombreOdontologo') {
                 url = `/turnos/nombreOdontologo/${busqueda}`;
             }
-            console.log("url --->"+url);
+
             fetch(url)
                 .then(response => {
                     if (response.status === 404) {
@@ -200,8 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log(turno);
                         const row = turnosTableBody.insertRow();
                         row.insertCell(0).innerText = turno.id || '';
-                        row.insertCell(1).innerText =`${turno.odontologo?.nombre || ''} ${turno.odontologo?.apellido || ''}`;
-                        row.insertCell(2).innerText = `${turno.paciente?.nombre || ''} ${turno.paciente?.apellido || ''}`;
+                        row.insertCell(1).innerText =`${capitalizarPrimeraLetra(turno.odontologo?.nombre) || ''} ${capitalizarPrimeraLetra(turno.odontologo?.apellido) || ''}`;
+                        row.insertCell(2).innerText = `${capitalizarPrimeraLetra(turno.paciente?.nombre) || ''} ${capitalizarPrimeraLetra(turno.paciente?.apellido) || ''}`;
                         row.insertCell(3).innerText = turno.fecha || '';
 
                         const accionesCell = row.insertCell(4);
@@ -217,12 +214,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(error.message);
                 })
                 .finally(() => {
-                                    // Limpia el campo de búsqueda siempre, independientemente del resultado
-                                    document.getElementById('busqueda').value = '';
+                    // Limpia el campo de búsqueda siempre, independientemente del resultado
+                    document.getElementById('busqueda').value = '';
                                 });
         });
 
     listarTodosBtn.addEventListener('click', listarTurnos);
     // Inicializar la lista de turnos al cargar la página
     listarTurnos();
+
+     function capitalizarPrimeraLetra(texto) {
+                return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+            }
 });
