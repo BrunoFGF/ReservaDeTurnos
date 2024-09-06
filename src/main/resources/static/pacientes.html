@@ -21,7 +21,7 @@
             color: #4a4a4a;
         }
         .btn-primary {
-            background-color: #5cb85c;
+                background-color: #5cb85c;
             border-color: #5cb85c;
         }
         .btn-primary:hover {
@@ -73,11 +73,12 @@
             <button class="btn btn-secondary" id="inicioBtn">Inicio</button>
             <button class="btn btn-secondary" id="listarTodosBtn">Listar Todos</button>
         </div>
+        <button class="btn btn-info" id="mostrarFormularioBtn">Agregar Paciente</button>
     </div>
     <h1 class="mb-4">Gestión de Pacientes</h1>
 
     <!-- Formulario de Paciente -->
-    <div class="card mb-4">
+    <div class="card mb-4" id="formContainer" style="display: none;">
         <div class="card-header">
             <h5 id="formTitle">Agregar Paciente</h5>
         </div>
@@ -128,7 +129,7 @@
                     </div>
                 </fieldset>
                 <button type="submit" class="btn btn-primary" id="guardarPaciente">Guardar</button>
-                <button type="button" class="btn btn-secondary" id="limpiarFormulario">Limpiar</button>
+                <button type="button" class="btn btn-secondary" id="cancelarBtn">Cancelar</button>
             </form>
         </div>
     </div>

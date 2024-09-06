@@ -1,9 +1,11 @@
 package com.hd.ProyectoIntegrador.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "turnos")
@@ -22,5 +24,5 @@ public class Turno {
     @ManyToOne
     @JoinColumn(name = "paciente_id", referencedColumnName = "id")
     private Paciente paciente;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 }
