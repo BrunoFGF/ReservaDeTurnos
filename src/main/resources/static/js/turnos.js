@@ -46,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
 
                 turnosTableBody.innerHTML = '';
+
                 data.forEach(turno => {
+                    if(turno){
                     const fechaHora = new Date(turno.fecha);
                      // Obtener la fecha local formateada
                      const fechaFormateada = fechaHora.toLocaleDateString('es-ES'); // Cambia 'es-ES' por tu configuración regional si es necesario
@@ -63,9 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="btn btn-warning btn-sm me-2" onclick="editarTurno(${turno.id})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="prepararEliminarTurno(${turno.id})">Eliminar</button>
                     `;
+                    }
                 });
             })
-            .catch(error => console.error('Error al listar turnos:', error));
+            .catch(error => {
+            turnosTableBody.innerHTML = '';
+            const row = turnosTableBody.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 5;
+            cell.textContent = "No hay resultados que coincidan con la busqueda" // Mostrar el mensaje de error
+            cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
+            });
+
     }
 
     // Función para agregar o actualizar un turno
@@ -123,12 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('turnoId').value = turno.id;
                 document.getElementById('odontologoId').value = turno.odontologo.id;
                 document.getElementById('pacienteId').value = turno.paciente.id;
-                document.getElementById('fechaTurno').value = turno.fecha;
+                document.getElementById('fechaTurno').value = formatearFechaParaDatetimeLocal(turno.fecha);
                 formTitle.textContent = 'Editar Turno';
                 guardarTurnoBtn.textContent = 'Actualizar';
                 formCard.style.display = 'block';
                 mostrarFormularioBtn.style.display = 'none';
                 window.scrollTo(0, 0);
+                console.log('Fecha original:', turno.fecha);
+                console.log('Fecha formateada:', formatearFechaParaDatetimeLocal(turno.fecha));
             })
             .catch(error => {
                 console.error('Error al editar turno:', error);
@@ -183,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(url)
                 .then(response => {
                     if (response.status === 404) {
-                        throw new Error(`No se encontró el paciente con el ${criterio} proporcionado.`);
+                        throw new Error(`No se encontró turno con el ${criterio} proporcionado.`);
                     } else if (!response.ok) {
                         throw new Error('Error en la búsqueda del paciente.');
                     }
@@ -192,14 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(data => {
 
                     turnosTableBody.innerHTML = '';
-                    if (data && data.length > 0) {
+                    if (Array.isArray(data) && data.length > 0) {
                      data.forEach(turno => {
                         console.log(turno);
                         const row = turnosTableBody.insertRow();
                         row.insertCell(0).innerText = turno.id || '';
                         row.insertCell(1).innerText =`${capitalizarPrimeraLetra(turno.odontologo?.nombre) || ''} ${capitalizarPrimeraLetra(turno.odontologo?.apellido) || ''}`;
                         row.insertCell(2).innerText = `${capitalizarPrimeraLetra(turno.paciente?.nombre) || ''} ${capitalizarPrimeraLetra(turno.paciente?.apellido) || ''}`;
-                        row.insertCell(3).innerText = turno.fecha || '';
+                        row.insertCell(3).innerText = formatearFechaParaDatetimeLocal(turno.fecha) || '';
 
                         const accionesCell = row.insertCell(4);
                         accionesCell.innerHTML = `
@@ -207,11 +220,23 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button class="btn btn-danger btn-sm" onclick="prepararEliminarTurno(${turno.id})">Eliminar</button>
                         `;
                         });
-                    }
+                    }else {
+                             // Mostrar mensaje si no hay datos
+                             const row = turnosTableBody.insertRow();
+                             const cell = row.insertCell(0);
+                             cell.colSpan = 5;
+                             cell.textContent = `No se encontró turno con el ${criterio} proporcionado.`;
+                             cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
+                            }
                 })
                 .catch(error => {
+
                     turnosTableBody.innerHTML = '';
-                    alert(error.message);
+                    const row = turnosTableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.textContent = `No se encontró turno con el ${criterio} proporcionado.`//error.message; // Mostrar el mensaje de error
+                    cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
                 })
                 .finally(() => {
                     // Limpia el campo de búsqueda siempre, independientemente del resultado
@@ -226,4 +251,17 @@ document.addEventListener('DOMContentLoaded', () => {
      function capitalizarPrimeraLetra(texto) {
                 return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
             }
+     function formatearFechaParaDatetimeLocal(fechaISO) {
+         // Asumiendo que fechaISO es una fecha en formato ISO 8601 (por ejemplo: '2024-09-10T12:00:00Z')
+         const fecha = new Date(fechaISO);
+
+         // Obtener la fecha en formato YYYY-MM-DDTHH:MM
+         const anio = fecha.getFullYear();
+         const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
+         const dia = String(fecha.getDate()).padStart(2, '0');
+         const horas = String(fecha.getHours()).padStart(2, '0');
+         const minutos = String(fecha.getMinutes()).padStart(2, '0');
+
+         return `${anio}-${mes}-${dia}T${horas}:${minutos}`;
+     }
 });

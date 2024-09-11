@@ -38,12 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
 
         const odontologo = {
-            id: document.getElementById('odontologoId').value.toLowerCase(),
-            nombre: document.getElementById('nombre').value.toLowerCase(),
-            apellido: document.getElementById('apellido').value.toLowerCase(),
-            matricula: document.getElementById('matricula').value.toLowerCase()
+            id: document.getElementById('odontologoId').value.toLowerCase().trim(),
+            nombre: document.getElementById('nombre').value.toLowerCase().trim(),
+            apellido: document.getElementById('apellido').value.toLowerCase().trim(),
+            matricula: document.getElementById('matricula').value.toLowerCase().trim()
         };
 
+        verificarUnicidadMatricula(odontologo.matricula)
+                    .then(existe => {
+                        if (existe && !odontologo.id) {
+                            alert('Ya existe un odontólogo con esa matrícula.');
+                            return;
+                        }
         const url = '/odontologos';
         const method = odontologo.id ? 'PUT' : 'POST';
 
@@ -64,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             listarTodos();
         })
         .catch(error => console.error('Error:', error));
+    })
+    .catch(error => console.error('Error en la verificación de matrícula:', error));
     });
 
 
@@ -79,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             url = `/odontologos/matricula/${encodeURIComponent(busqueda)}`;
         }
 
+        let articulo = criterio === "id"?"el":"la";
         fetch(url)
         .then(response => {
             if (response.status === 404) {
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const row = tableBody.insertRow();
                 const cell = row.insertCell(0);
                 cell.colSpan = 5;
-                cell.textContent = `No se encontró el odontólogo con el ${criterio} proporcionado.`;
+                cell.textContent = `No se encontró el odontólogo con ${articulo} ${criterio} proporcionado.`;
                 cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
 
             }
@@ -106,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = tableBody.insertRow();
             const cell = row.insertCell(0);
             cell.colSpan = 5;
-            cell.textContent = error.message; // Mostrar el mensaje de error
+            cell.textContent = `No se encontró el odontólogo con ${articulo} ${criterio} proporcionado.`//error.message; // Mostrar el mensaje de error
             cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
 
         })
@@ -191,4 +200,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function capitalizarPrimeraLetra(texto) {
         return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
     }
+
+        // Verificar unicidad de matrícula
+        function verificarUnicidadMatricula(matricula) {
+            return fetch(`/odontologos/matricula/${encodeURIComponent(matricula)}`)
+                .then(response => response.json())
+                .then(data => !!data) // Si data existe, la matrícula ya está en uso
+                .catch(error => {
+                    console.error('Error al verificar matrícula:', error);
+                    return false; // Suponemos que la matrícula no está en uso si hay un error
+                });
+        }
 });

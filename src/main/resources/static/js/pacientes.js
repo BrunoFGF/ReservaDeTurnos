@@ -47,23 +47,32 @@ document.addEventListener('DOMContentLoaded', () => {
         pacienteForm.addEventListener('submit', function(event) {
             event.preventDefault();
             const pacienteId = document.getElementById('pacienteId').value;
+
+
+
             const metodo = pacienteId ? 'PUT' : 'POST';
             const url = '/pacientes';
 
             const paciente = {
                 id: pacienteId ? parseInt(pacienteId, 10)  : null,
-                nombre: document.getElementById('nombre').value.toLowerCase(),
-                apellido: document.getElementById('apellido').value.toLowerCase(),
+                nombre: document.getElementById('nombre').value.toLowerCase().trim(),
+                apellido: document.getElementById('apellido').value.toLowerCase().trim(),
                 dni: document.getElementById('dni').value,
                 fechaAlta: document.getElementById('fechaAlta').value,
                 domicilio: {
-                    calle: document.getElementById('calle').value,
+                    calle: document.getElementById('calle').value.trim(),
                     numero: parseInt(document.getElementById('numero').value),
-                    localidad: document.getElementById('localidad').value,
-                    provincia: document.getElementById('provincia').value
+                    localidad: document.getElementById('localidad').value.trim(),
+                    provincia: document.getElementById('provincia').value.trim()
                 }
             };
              console.log('Paciente a guardar:', paciente);
+              verificarUnicidadDni(paciente.dni)
+                            .then(existe => {
+                                if (existe && !paciente.id) {
+                                    alert('Ya existe un paciente con ese dni');
+                                    return;
+                                }
 
             fetch(url, {
                 method: metodo,
@@ -89,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert(error.message);
+                alert("Error al guardar/actualizar paciente");
+            })
+            .catch(error => console.error('Error en la verificación de dni:', error));
             });
         });
 
@@ -98,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/pacientes')
             .then(response => response.json())
             .then(data => {
+
                 pacientesTableBody.innerHTML = '';
                 data.forEach(paciente => {
                     const row = pacientesTableBody.insertRow();
@@ -119,38 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(error => console.error('Error al listar pacientes:', error));
+
     }
 
-    // Función para editar un paciente
-        window.editarPaciente = function(id) {
-            fetch(`/pacientes/${id}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al obtener el paciente.');
-                    }
-                    return response.json();
-                })
-                .then(paciente => {
-                    document.getElementById('pacienteId').value = paciente.id;
-                    document.getElementById('nombre').value = capitalizarPrimeraLetra(paciente.nombre);
-                    document.getElementById('apellido').value = capitalizarPrimeraLetra(paciente.apellido);
-                    document.getElementById('dni').value = paciente.dni;
-                    document.getElementById('fechaAlta').value = paciente.fechaAlta;
-                    document.getElementById('calle').value = paciente.domicilio.calle;
-                    document.getElementById('numero').value = paciente.domicilio.numero;
-                    document.getElementById('localidad').value = paciente.domicilio.localidad;
-                    document.getElementById('provincia').value = paciente.domicilio.provincia;
-                    formTitle.textContent = 'Editar Paciente';
-                    guardarPacienteBtn.textContent = 'Actualizar';
-                    formCard.style.display = 'block';
-                    mostrarFormularioBtn.style.display = 'none';
-                    window.scrollTo(0, 0);
-                })
-                .catch(error => {
-                    console.error('Error al editar paciente:', error);
-                    alert(error.message);
-                });
-        };
 
     // Función para preparar la eliminación de un paciente
         window.prepararEliminarPaciente = function(id) {
@@ -173,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch(error => {
                     console.error('Error al eliminar paciente:', error);
-                    alert(error.message);
+                    alert('Error al eliminar paciente:');
                 })
                 .finally(() => {
                     confirmDeleteModal.hide();
@@ -196,10 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
+
         fetch(url)
             .then(response => {
                 if (response.status === 404) {
                     throw new Error(`No se encontró el paciente con el ${criterio} proporcionado.`);
+
                 } else if (!response.ok) {
                     throw new Error('Error en la búsqueda del paciente.');
                 }
@@ -225,13 +210,50 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 pacientesTableBody.innerHTML = '';
-                alert(error.message);
+                tableBody.innerHTML = ''; // Limpiar la tabla en caso de error
+                const row = tableBody.insertRow();
+                const cell = row.insertCell(0);
+                cell.colSpan = 6;
+                cell.textContent = `No se encontró el paciente con el ${criterio} proporcionado.`//error.message; // Mostrar el mensaje de error
+                cell.style.textAlign = 'center'; // Centrar el mensaje en la tabla
+
             })
             .finally(() => {
                 // Limpia el campo de búsqueda siempre, independientemente del resultado
                 document.getElementById('busqueda').value = '';
                             });
     });
+
+       // Función para editar un paciente
+            window.editarPaciente = function(id) {
+                fetch(`/pacientes/${id}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al obtener el paciente.');
+                        }
+                        return response.json();
+                    })
+                    .then(paciente => {
+                        document.getElementById('pacienteId').value = paciente.id;
+                        document.getElementById('nombre').value = capitalizarPrimeraLetra(paciente.nombre);
+                        document.getElementById('apellido').value = capitalizarPrimeraLetra(paciente.apellido);
+                        document.getElementById('dni').value = paciente.dni;
+                        document.getElementById('fechaAlta').value = paciente.fechaAlta;
+                        document.getElementById('calle').value = paciente.domicilio.calle;
+                        document.getElementById('numero').value = paciente.domicilio.numero;
+                        document.getElementById('localidad').value = paciente.domicilio.localidad;
+                        document.getElementById('provincia').value = paciente.domicilio.provincia;
+                        formTitle.textContent = 'Editar Paciente';
+                        guardarPacienteBtn.textContent = 'Actualizar';
+                        formCard.style.display = 'block';
+                        mostrarFormularioBtn.style.display = 'none';
+                        window.scrollTo(0, 0);
+                    })
+                    .catch(error => {
+                        console.error('Error al editar paciente:', error);
+                        alert(`No se encontró el paciente con el ${criterio} proporcionado.`);
+                    });
+            };
 
 
 
@@ -243,5 +265,15 @@ document.addEventListener('DOMContentLoaded', () => {
      function capitalizarPrimeraLetra(texto) {
             return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
         }
+             // Verificar unicidad de matrícula
+     function verificarUnicidadDni(dni) {
+         return fetch(`/pacientes/dni/${encodeURIComponent(dni)}`)
+             .then(response => response.json())
+             .then(data => !!data) // Si data existe, la matrícula ya está en uso
+             .catch(error => {
+                 console.error('Error al verificar dni:', error);
+                 return false; // Suponemos que la matrícula no está en uso si hay un error
+             });
+     }
 
 });
