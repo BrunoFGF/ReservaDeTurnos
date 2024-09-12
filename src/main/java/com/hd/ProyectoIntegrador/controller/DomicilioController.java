@@ -34,31 +34,14 @@ public class DomicilioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable  Long id){
         ResponseEntity<Void> response = null;
-        if (iServiceDomicilio.eliminar(id)){
+        if (iServiceDomicilio.eliminar(id))
             response = ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
         return response;
     }
 
     @PutMapping
     public ResponseEntity<Domicilio> actualizar(@RequestBody Domicilio domicilio) {
         Domicilio domicilioActualizado = iServiceDomicilio.actualizar(domicilio);
-        if (domicilioActualizado != null) {
-            return ResponseEntity.ok(domicilioActualizado);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
-
-    @GetMapping("nombrePaciente/{nombrePaciente}")
-    public ResponseEntity<Domicilio> buscarPorNombreDelPaciente(@PathVariable String nombrePaciente) {
-        return ResponseEntity.ok(iServiceDomicilio.buscarPorNombreDelPaciente(nombrePaciente));
-    }
-
-    @GetMapping("apellidoPaciente/{apellidoPaciente}")
-    public ResponseEntity<Domicilio> buscarPorApellidoDelPaciente(@PathVariable String apellidoPaciente) {
-        return ResponseEntity.ok(iServiceDomicilio.buscarPorApellidoDelPaciente(apellidoPaciente));
+        return ResponseEntity.ok(domicilioActualizado);
     }
 }

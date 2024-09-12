@@ -119,34 +119,6 @@ class ImpServicePacienteTest {
     }
 
     @Test
-    void buscarPorNombre() {
-        String nombre = "John";
-        when(iPacienteRepository.findByNombre(nombre)).thenReturn(paciente);
-
-        Paciente resultado = impServicePaciente.buscarPorNombre(nombre);
-
-        System.out.println("Test BuscarPorNombre: " + resultado);
-
-        assertNotNull(resultado);
-        assertEquals(paciente, resultado);
-        verify(iPacienteRepository).findByNombre(nombre);
-    }
-
-    @Test
-    void buscarPorApellido() {
-        String apellido = "Doe";
-        when(iPacienteRepository.findByApellido(apellido)).thenReturn(paciente);
-
-        Paciente resultado = impServicePaciente.buscarPorApellido(apellido);
-
-        System.out.println("Test BuscarPorApellido: " + resultado);
-
-        assertNotNull(resultado);
-        assertEquals(paciente, resultado);
-        verify(iPacienteRepository).findByApellido(apellido);
-    }
-
-    @Test
     void buscarPorDni() {
         String dni = "12345678";
         when(iPacienteRepository.findByDni(dni)).thenReturn(paciente);

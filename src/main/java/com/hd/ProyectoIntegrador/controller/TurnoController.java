@@ -33,22 +33,15 @@ public class TurnoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable  Long id){
         ResponseEntity<Void> response = null;
-        if (iServiceTurno.eliminar(id)){
+        if (iServiceTurno.eliminar(id))
             response = ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
         return response;
     }
 
     @PutMapping
     public ResponseEntity<Turno> actualizar(@RequestBody Turno turno) {
-        Turno turnoActualizado = iServiceTurno.actualizar(turno);
-        if (turnoActualizado != null) {
-            return ResponseEntity.ok(turnoActualizado);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        Turno turnoeActualizado = iServiceTurno.actualizar(turno);
+        return ResponseEntity.ok(turnoeActualizado);
     }
 
     @GetMapping("nombrePaciente/{nombrePaciente}")

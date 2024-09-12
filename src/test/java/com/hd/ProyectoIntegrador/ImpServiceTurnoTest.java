@@ -49,7 +49,7 @@ class ImpServiceTurnoTest {
         turno.setId(1L);
         turno.setOdontologo(odontologo);
         turno.setPaciente(paciente);
-        turno.setFecha(LocalDate.now());
+        turno.setFecha(LocalDate.now().atStartOfDay());
     }
 
     @Test

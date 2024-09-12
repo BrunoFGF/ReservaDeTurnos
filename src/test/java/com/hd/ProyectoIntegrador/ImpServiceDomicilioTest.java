@@ -172,46 +172,4 @@ class ImpServiceDomicilioTest {
 
         System.out.println("No se encontraron domicilios en la base de datos.");
     }
-
-    @Test
-    void buscarPorNombreDelPaciente() {
-        String nombre = "Juan";
-        Domicilio domicilio = new Domicilio();
-        domicilio.setId(8L);
-        domicilio.setCalle("Calle 3");
-        domicilio.setNumero(303);
-        domicilio.setLocalidad("Monroe City");
-        domicilio.setProvincia("Iowa");
-
-        when(iDomicilioRepository.findByNombreDelPaciente(nombre)).thenReturn(domicilio);
-
-        Domicilio resultado = impServiceDomicilio.buscarPorNombreDelPaciente(nombre);
-
-        assertNotNull(resultado);
-        assertEquals(domicilio, resultado);
-        verify(iDomicilioRepository).findByNombreDelPaciente(nombre);
-
-        System.out.println("Domicilio buscado por nombre del paciente: " + resultado);
-    }
-
-    @Test
-    void buscarPorApellidoDelPaciente() {
-        String apellido = "Pérez";
-        Domicilio domicilio = new Domicilio();
-        domicilio.setId(9L);
-        domicilio.setCalle("Calle 4");
-        domicilio.setNumero(404);
-        domicilio.setLocalidad("West Springfield");
-        domicilio.setProvincia("Massachusetts");
-
-        when(iDomicilioRepository.findByApellidoDelPaciente(apellido)).thenReturn(domicilio);
-
-        Domicilio resultado = impServiceDomicilio.buscarPorApellidoDelPaciente(apellido);
-
-        assertNotNull(resultado);
-        assertEquals(domicilio, resultado);
-        verify(iDomicilioRepository).findByApellidoDelPaciente(apellido);
-
-        System.out.println("Domicilio buscado por apellido del paciente: " + resultado);
-    }
 }
