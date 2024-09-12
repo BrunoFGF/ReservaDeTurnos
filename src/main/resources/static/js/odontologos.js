@@ -41,8 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
             id: document.getElementById('odontologoId').value.toLowerCase().trim(),
             nombre: document.getElementById('nombre').value.toLowerCase().trim(),
             apellido: document.getElementById('apellido').value.toLowerCase().trim(),
-            matricula: document.getElementById('matricula').value.toLowerCase().trim()
+            matricula: document.getElementById('matricula').value.trim()
         };
+
+        console.log("odontologo -> "+odontologo.matricula)
 
         verificarUnicidadMatricula(odontologo.matricula)
                     .then(existe => {
@@ -148,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${odontologo.id}</td>
             <td>${capitalizarPrimeraLetra(odontologo.nombre)}</td>
             <td>${capitalizarPrimeraLetra(odontologo.apellido)}</td>
-            <td>${capitalizarPrimeraLetra(odontologo.matricula)}</td>
+            <td>${odontologo.matricula}</td>
             <td>
                 <button class="btn btn-sm btn-warning editar-btn" data-id="${odontologo.id}">Editar</button>
                 <button class="btn btn-sm btn-danger eliminar-btn" data-id="${odontologo.id}">Eliminar</button>
@@ -205,10 +207,15 @@ document.addEventListener('DOMContentLoaded', function() {
         function verificarUnicidadMatricula(matricula) {
             return fetch(`/odontologos/matricula/${encodeURIComponent(matricula)}`)
                 .then(response => response.json())
-                .then(data => !!data) // Si data existe, la matrícula ya está en uso
+
                 .catch(error => {
                     console.error('Error al verificar matrícula:', error);
                     return false; // Suponemos que la matrícula no está en uso si hay un error
                 });
+        }
+
+        function isJsonEmpty(json) {
+            // Verifica si el JSON es un objeto y si no tiene propiedades
+            return json && Object.keys(json).length === 0 && json.constructor === Object;
         }
 });

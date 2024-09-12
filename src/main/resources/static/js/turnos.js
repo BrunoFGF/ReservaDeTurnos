@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mostrarFormularioBtn = document.getElementById('mostrarFormularioBtn');
 
     let turnoIdEliminar = null;
+    let turnosExistentes = [];
 
      // Redirigir a index.html al hacer clic en el botón
                 inicioBtn.addEventListener('click', function() {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/turnos')
             .then(response => response.json())
             .then(data => {
-
+                turnosExistentes = data;
                 turnosTableBody.innerHTML = '';
 
                 data.forEach(turno => {
@@ -92,6 +93,22 @@ document.addEventListener('DOMContentLoaded', () => {
             paciente: { id: parseInt(document.getElementById('pacienteId').value) },
             fecha: document.getElementById('fechaTurno').value
         };
+
+          if (Array.isArray(turnosExistentes)) {
+                // Verificar si el turno ya existe en la lista de turnos
+                const esDuplicado = turnosExistentes.some(t =>
+                    t.id !== turno.id && // Asegúrate de no comparar con el propio turno si es una actualización
+                    t.odontologo.id === turno.odontologo.id &&
+                    //t.paciente.id === turno.paciente.id &&
+                    new Date(t.fecha).toLocaleString() === new Date(turno.fecha).toLocaleString()
+                );
+
+
+                if (esDuplicado) {
+                    alert('Ya existe un turno con la misma fecha, hora y odontólogo');
+                    return;
+                }
+            }
 
         fetch(url, {
             method: metodo,
