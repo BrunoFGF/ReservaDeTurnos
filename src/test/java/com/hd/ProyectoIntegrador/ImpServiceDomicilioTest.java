@@ -89,9 +89,8 @@ class ImpServiceDomicilioTest {
         Long id = 3L;
         when(iDomicilioRepository.existsById(id)).thenReturn(false);
 
-        boolean resultado = impServiceDomicilio.eliminar(id);
+        assertThrows(ResourceNotFoundException.class, () -> impServiceDomicilio.eliminar(id));
 
-        assertFalse(resultado);
         verify(iDomicilioRepository, never()).deleteById(id);
 
         System.out.println("Intento de eliminación fallido para ID inexistente: " + id);
@@ -129,9 +128,8 @@ class ImpServiceDomicilioTest {
 
         when(iDomicilioRepository.existsById(domicilio.getId())).thenReturn(false);
 
-        Domicilio resultado = impServiceDomicilio.actualizar(domicilio);
+        assertThrows(ResourceNotFoundException.class, () -> impServiceDomicilio.actualizar(domicilio));
 
-        assertNull(resultado);
         verify(iDomicilioRepository, never()).save(domicilio);
 
         System.out.println("Intento de actualización fallido para ID inexistente: " + domicilio.getId());
