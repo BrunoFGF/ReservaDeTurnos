@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador;
 
+import com.hd.ProyectoIntegrador.exception.ResourceNotFoundException;
 import com.hd.ProyectoIntegrador.model.Odontologo;
 import com.hd.ProyectoIntegrador.repository.IOdontologoRepository;
 import com.hd.ProyectoIntegrador.service.implementation.ImpServiceOdontologo;
@@ -110,7 +111,7 @@ class ImpServiceOdontologoTest {
 
         System.out.println("Test ListarTodos_sinOdontologos: No se encontraron odontólogos.");
 
-        assertThrows(EntityNotFoundException.class, () -> impServiceOdontologo.listarTodos());
+        assertThrows(ResourceNotFoundException.class, () -> impServiceOdontologo.listarTodos());
         verify(iOdontologoRepository).findAll();
     }
 

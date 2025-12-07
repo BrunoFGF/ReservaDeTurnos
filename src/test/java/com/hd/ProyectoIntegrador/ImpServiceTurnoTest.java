@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador;
 
+import com.hd.ProyectoIntegrador.exception.ResourceNotFoundException;
 import com.hd.ProyectoIntegrador.model.Odontologo;
 import com.hd.ProyectoIntegrador.model.Paciente;
 import com.hd.ProyectoIntegrador.model.Turno;
@@ -123,7 +124,7 @@ class ImpServiceTurnoTest {
     void listarTodos_sinTurnos() {
         when(iTurnoRepository.findAll()).thenReturn(List.of());
         System.out.println("No se encontraron turnos");
-        assertThrows(EntityNotFoundException.class, () -> impServiceTurno.listarTodos());
+        assertThrows(ResourceNotFoundException.class, () -> impServiceTurno.listarTodos());
         verify(iTurnoRepository).findAll();
     }
 

@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador;
 
+import com.hd.ProyectoIntegrador.exception.ResourceNotFoundException;
 import com.hd.ProyectoIntegrador.model.Domicilio;
 import com.hd.ProyectoIntegrador.model.Paciente;
 import com.hd.ProyectoIntegrador.repository.IPacienteRepository;
@@ -114,7 +115,7 @@ class ImpServicePacienteTest {
 
         System.out.println("Test ListarTodos_sinPacientes: No se encontraron pacientes.");
 
-        assertThrows(EntityNotFoundException.class, () -> impServicePaciente.listarTodos());
+        assertThrows(ResourceNotFoundException.class, () -> impServicePaciente.listarTodos());
         verify(iPacienteRepository).findAll();
     }
 

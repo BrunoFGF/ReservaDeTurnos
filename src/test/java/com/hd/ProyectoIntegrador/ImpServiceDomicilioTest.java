@@ -1,5 +1,6 @@
 package com.hd.ProyectoIntegrador;
 
+import com.hd.ProyectoIntegrador.exception.ResourceNotFoundException;
 import com.hd.ProyectoIntegrador.model.Domicilio;
 import com.hd.ProyectoIntegrador.repository.IDomicilioRepository;
 import com.hd.ProyectoIntegrador.service.implementation.ImpServiceDomicilio;
@@ -167,7 +168,7 @@ class ImpServiceDomicilioTest {
     void listarTodos_sinDomicilios() {
         when(iDomicilioRepository.findAll()).thenReturn(List.of());
 
-        assertThrows(EntityNotFoundException.class, () -> impServiceDomicilio.listarTodos());
+        assertThrows(ResourceNotFoundException.class, () -> impServiceDomicilio.listarTodos());
         verify(iDomicilioRepository).findAll();
 
         System.out.println("No se encontraron domicilios en la base de datos.");
