@@ -9,47 +9,50 @@ pipeline {
     stages {
 		stage('Checkout') {
 			steps {
-				echo 'Obteniendo código desde GitHub...'
+				echo '🔄 Obteniendo código desde GitHub...'
                 checkout scm
             }
         }
 
         stage('Build') {
 			steps {
-				echo 'Compilando el proyecto...'
-                bat 'mvn clean compile'
+				echo '🔨 Compilando el proyecto...'
+                sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
 			steps {
 				echo '🧪 Ejecutando pruebas unitarias...'
-                bat 'mvn test'
+                sh 'mvn test'
             }
             post {
 				always {
 					junit '**/target/surefire-reports/*.xml'
-                    echo 'Resultados de tests publicados'
+                    echo '📊 Resultados de tests publicados'
                 }
             }
         }
 
         stage('Package') {
 			steps {
-				echo 'Empaquetando aplicación...'
-                bat 'mvn package -DskipTests'
+				echo '📦 Empaquetando aplicación...'
+                sh 'mvn package -DskipTests'
             }
         }
 
         stage('Deploy') {
 			steps {
-				echo 'Desplegando aplicación...'
-                bat '''
-                    echo Deteniendo aplicacion si esta corriendo...
-                    taskkill /F /IM java.exe /FI "WINDOWTITLE eq ProyectoIntegrador*" || exit 0
-                    echo Iniciando aplicacion en segundo plano...
-                    start /B java -jar target/ProyectoIntegrador-0.0.1-SNAPSHOT.jar
-                    echo Aplicacion desplegada en http://localhost:8083
+				echo '🚀 Desplegando aplicación...'
+                sh '''
+                    echo "Deteniendo aplicacion si esta corriendo..."
+                    pkill -f "ProyectoIntegrador" || true
+                    echo "Iniciando aplicacion en segundo plano..."
+                    nohup java -jar target/ProyectoIntegrador-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+                    sleep 5
+                    echo "Aplicacion desplegada en http://localhost:8083"
+                    echo "Verificando que la aplicacion este corriendo..."
+                    ps aux | grep ProyectoIntegrador || true
                 '''
             }
         }
@@ -57,34 +60,10 @@ pipeline {
 
     post {
 		success {
-			echo 'Pipeline ejecutado exitosamente!'
-            emailext(
-                subject: "Build Exitoso - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h2>Build Completado Exitosamente</h2>
-                    <p><b>Proyecto:</b> ${env.JOB_NAME}</p>
-                    <p><b>Build:</b> #${env.BUILD_NUMBER}</p>
-                    <p><b>Estado:</b> SUCCESS</p>
-                    <p><b>URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """,
-                to: 'brunoooogallegos@hotmail.com',
-                mimeType: 'text/html'
-            )
+			echo '✅ Pipeline ejecutado exitosamente!'
         }
         failure {
-			echo 'Pipeline falló. Revisa los logs.'
-            emailext(
-                subject: "Build Fallido - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h2>Build Falló</h2>
-                    <p><b>Proyecto:</b> ${env.JOB_NAME}</p>
-                    <p><b>Build:</b> #${env.BUILD_NUMBER}</p>
-                    <p><b>Estado:</b> FAILURE</p>
-                    <p><b>URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """,
-                to: 'brunoooogallegos@hotmail.com',
-                mimeType: 'text/html'
-            )
+			echo '❌ Pipeline falló. Revisa los logs.'
         }
     }
 }
